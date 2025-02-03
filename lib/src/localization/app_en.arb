@@ -1,0 +1,6 @@
+{
+  "appTitle": "poker_time",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
