@@ -1,72 +1,22 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/settings_button.dart';
 import 'blinds.dart';
+import 'timer_info.dart';
 import 'timer_text.dart';
 
-class PokerTimeView extends StatefulWidget {
+class PokerTimeView extends StatelessWidget {
   const PokerTimeView({super.key});
 
   static const routeName = '/';
 
   @override
-  State<PokerTimeView> createState() => _PokerTimeViewState();
-}
-
-class _PokerTimeViewState extends State<PokerTimeView> {
-  static const roundDuration = 480;
-
-  var _round = 0;
-  var _timerCount = roundDuration;
-  var _isRunning = false;
-  var _isGameOver = false;
-  late Timer _timer;
-
-  final _maxRounds = 9;
-
-  toggleTimer() {
-    if (_isRunning) {
-      _timer.cancel();
-      setState(() {
-        _isRunning = false;
-      });
-    } else {
-      setState(() {
-        _isRunning = true;
-      });
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        setState(() {
-          if (_timerCount > 0) {
-            _timerCount--;
-          } else {
-            _isRunning = false;
-            if (_round < _maxRounds - 1) {
-              _round++;
-              _timerCount = roundDuration;
-            } else {
-              _isGameOver = true;
-              _timer.cancel();
-            }
-          }
-        });
-      });
-    }
-  }
-
-  resetGame() {
-    _timer.cancel();
-    setState(() {
-      _round = 0;
-      _timerCount = roundDuration;
-      _isRunning = false;
-      _isGameOver = false;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final timerInfo = Provider.of<TimerInfo>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Poker Time'),
@@ -76,7 +26,7 @@ class _PokerTimeViewState extends State<PokerTimeView> {
       ),
       body: OrientationBuilder(
         builder: (context, orientation) {
-          if (_isGameOver) {
+          if (timerInfo.isGameOver) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +36,9 @@ class _PokerTimeViewState extends State<PokerTimeView> {
                     style: TextStyle(fontSize: 48),
                   ),
                   ElevatedButton.icon(
-                    onPressed: resetGame,
+                    onPressed: () {
+                      timerInfo.resetTimer();
+                    },
                     icon: const Icon(Icons.replay),
                     label: const Text('Play again'),
                   ),
@@ -99,14 +51,10 @@ class _PokerTimeViewState extends State<PokerTimeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Center(
-                      child: TimerText(
-                        remainingSeconds: _timerCount,
-                        isRunning: _isRunning,
-                        onPressed: toggleTimer,
-                      ),
+                      child: TimerText(),
                     ),
                     Center(
-                      child: Blinds(round: _round),
+                      child: Blinds(),
                     ),
                   ],
                 )
@@ -114,14 +62,10 @@ class _PokerTimeViewState extends State<PokerTimeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Center(
-                      child: TimerText(
-                        remainingSeconds: _timerCount,
-                        isRunning: _isRunning,
-                        onPressed: toggleTimer,
-                      ),
+                      child: TimerText(),
                     ),
                     Center(
-                      child: Blinds(round: _round),
+                      child: Blinds(),
                     )
                   ],
                 );

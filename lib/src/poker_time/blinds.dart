@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:poker_time/src/poker_time/timer_info.dart';
+import 'package:provider/provider.dart';
 
 import 'blind_values.dart';
 
@@ -17,10 +19,7 @@ class Blinds extends StatelessWidget {
 
   Blinds({
     super.key,
-    required int round,
-  }) : _round = round;
-
-  final int _round;
+  });
 
   String getText(blinds, round) {
     if (round >= 0 && round < blinds.length) {
@@ -32,14 +31,16 @@ class Blinds extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final timerInfo = Provider.of<TimerInfo>(context);
+
     return Column(
       children: [
         Text(
-          getText(_blinds, _round),
+          getText(_blinds, timerInfo.round),
           style: const TextStyle(fontSize: 48),
         ),
         Text(
-          getText(_blinds, _round + 1),
+          getText(_blinds, timerInfo.round + 1),
           style: const TextStyle(fontSize: 16),
         )
       ],
