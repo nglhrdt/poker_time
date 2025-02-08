@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'timer_info.dart';
 
@@ -16,8 +17,8 @@ class GameOver extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Game Over',
+          Text(
+            AppLocalizations.of(context)!.gameOver,
             style: TextStyle(fontSize: 48),
           ),
           ElevatedButton.icon(
@@ -25,7 +26,7 @@ class GameOver extends StatelessWidget {
               timerInfo.resetTimer();
             },
             icon: const Icon(Icons.replay),
-            label: const Text('Play again'),
+            label: Text(AppLocalizations.of(context)!.restartButton),
           ),
         ],
       ),

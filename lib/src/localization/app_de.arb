@@ -1,0 +1,14 @@
+{
+  "@@locale": "de",
+  "appTitle": "Poker Timer",
+  "settings": "Einstellungen",
+  "themeSettings": "Design",
+  "themeListItemSystem": "Systemeinstellungen",
+  "themeListItemLight": "Helles Design",
+  "themeListItemDark": "Dunkles Design",
+  "startButton": "Starten",
+  "pauseButton": "Pausieren",
+  "restartButton": "Neustarten",
+  "lastRound": "Letzte Runde",
+  "gameOver": "Spielende"
+}

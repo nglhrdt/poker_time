@@ -1,6 +1,47 @@
 {
-  "appTitle": "poker_time",
+  "@@locale": "en",
+  "appTitle": "Poker Timer",
   "@appTitle": {
     "description": "The title of the application"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "The title of the settings page"
+  },
+  "themeSettings": "Theme Settings",
+  "@themeSettings": {
+    "description": "The title of the theme settings section"
+  },
+  "themeListItemSystem": "System Theme",
+  "@themeListItemSystem": {
+    "description": "The text of the system theme list item"
+  },
+  "themeListItemLight": "Light Theme",
+  "@themeListItemLight": {
+    "description": "The text of the light theme list item"
+  },
+  "themeListItemDark": "Dark Theme",
+  "@themeListItemDark": {
+    "description": "The text of the dark theme list item"
+  },
+  "startButton": "Start",
+  "@startButton": {
+    "description": "The text of the start button to start the game"
+  },
+  "pauseButton": "Pause",
+  "@pauseButton": {
+    "description": "The text of the pause button to pause the game"
+  },
+  "restartButton": "Restart",
+  "@restartButton": {
+    "description": "The text of the restart button to start a new game"
+  },
+  "lastRound": "Last Round",
+  "@lastRound": {
+    "description": "The text of the last round label"
+  },
+  "gameOver": "Game Over",
+  "@gameOver": {
+    "description": "The text of the game over label"
   }
 }

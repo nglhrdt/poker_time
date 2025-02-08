@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'timer_info.dart';
 
@@ -23,7 +24,9 @@ class Timer extends StatelessWidget {
           isRunning ? timerInfo.stopTimer() : timerInfo.startTimer();
         },
         icon: Icon(isRunning ? Icons.pause : Icons.play_arrow),
-        label: Text(isRunning ? 'Pause' : 'Start'),
+        label: Text(isRunning
+            ? AppLocalizations.of(context)!.pauseButton
+            : AppLocalizations.of(context)!.startButton),
       ),
     ]);
   }

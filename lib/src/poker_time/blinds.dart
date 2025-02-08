@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poker_time/src/poker_time/timer_info.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Blinds extends StatelessWidget {
   const Blinds({super.key});
@@ -18,7 +19,7 @@ class Blinds extends StatelessWidget {
           style: const TextStyle(fontSize: 48),
         ),
         Text(
-          nextBlinds?.toString() ?? 'No more rounds',
+          nextBlinds?.toString() ?? AppLocalizations.of(context)!.lastRound,
           style: const TextStyle(fontSize: 16),
         )
       ],
