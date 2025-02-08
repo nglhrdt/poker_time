@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'timer_info.dart';
 
-class TimerText extends StatelessWidget {
-  const TimerText({super.key});
+class Timer extends StatelessWidget {
+  const Timer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class TimerText extends StatelessWidget {
 
     return Column(children: [
       Text(
-        '${(remaingSeconds / 60).floor().toString().padLeft(2, '0')}:${(remaingSeconds % 60).toString().padLeft(2, '0')}',
+        getTimerText(remaingSeconds),
         style: const TextStyle(fontSize: 96),
       ),
       ElevatedButton.icon(
@@ -27,4 +27,11 @@ class TimerText extends StatelessWidget {
       ),
     ]);
   }
+}
+
+String getTimerText(int remainingSeconds) {
+  final minutes = (remainingSeconds / 60).floor().toString().padLeft(2, '0');
+  final seconds = (remainingSeconds % 60).toString().padLeft(2, '0');
+
+  return '$minutes:$seconds';
 }
