@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poker_time/src/poker_time/game_over.dart';
 import 'package:provider/provider.dart';
 
 import 'timer_info.dart';
@@ -12,6 +13,11 @@ class Timer extends StatelessWidget {
 
     final remaingSeconds = timerInfo.remainingTime;
     final isRunning = timerInfo.isRunning;
+    final isFinished = timerInfo.isFinished;
+
+    if (isFinished) {
+      return const GameOver();
+    }
 
     return Column(children: [
       Text(
