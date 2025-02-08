@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:poker_time/src/poker_time/blinds.dart';
-import 'package:poker_time/src/poker_time/timer.dart';
+import 'package:poker_time/src/widgets/blinds.dart';
+import 'package:poker_time/src/widgets/clock.dart';
 import 'package:provider/provider.dart';
 
-import 'game_over.dart';
-import 'timer_info.dart';
+import '../widgets/game_over.dart';
+import 'timer_service.dart';
 
 class AdaptiveTimerView extends StatelessWidget {
   const AdaptiveTimerView({super.key});
@@ -12,7 +12,7 @@ class AdaptiveTimerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (builder, constraints) {
-      final timerInfo = Provider.of<TimerInfo>(context);
+      final timerInfo = Provider.of<TimerService>(context);
       final isFinished = timerInfo.isFinished;
       final isMoreTallThanWide = constraints.maxHeight > constraints.maxWidth;
 
@@ -24,7 +24,7 @@ class AdaptiveTimerView extends StatelessWidget {
         Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Timer()],
+            children: [Clock()],
           ),
         ),
         Expanded(

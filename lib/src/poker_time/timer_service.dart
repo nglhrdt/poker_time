@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'blind_values.dart';
 
-class TimerInfo with ChangeNotifier {
+class TimerService with ChangeNotifier {
   final _maxRounds = 9;
   final _blinds = [
     BlindValues(small: 5, big: 10),
