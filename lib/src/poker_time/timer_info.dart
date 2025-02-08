@@ -18,13 +18,13 @@ class TimerInfo with ChangeNotifier {
     BlindValues(small: 1600, big: 3200),
   ];
 
-  int _remainingTime = 2;
+  int _roundTime = 480;
   int _round = 0;
   bool _isRunning = false;
   bool _isFinished = false;
   Timer _timer = Timer(Duration.zero, () {});
 
-  int get remainingTime => _remainingTime;
+  int get remainingTime => _roundTime;
   int get round => _round;
   bool get isRunning => _isRunning;
   bool get isFinished => _isFinished;
@@ -33,25 +33,26 @@ class TimerInfo with ChangeNotifier {
       _round + 1 < _maxRounds ? _blinds[_round + 1] : null;
 
   void startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 1), tickHandler);
     _isRunning = true;
     notifyListeners();
+  }
 
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_remainingTime > 0) {
-        _remainingTime--;
-      } else {
-        if (_round == _maxRounds - 1) {
-          _isFinished = true;
-          _isRunning = false;
-          timer.cancel();
-          notifyListeners();
-          return;
-        }
-        _round++;
-        _remainingTime = 2;
+  void tickHandler(timer) {
+    if (_roundTime > 0) {
+      _roundTime--;
+    } else {
+      if (_round == _maxRounds - 1) {
+        _isFinished = true;
+        _isRunning = false;
+        timer.cancel();
+        notifyListeners();
+        return;
       }
-      notifyListeners();
-    });
+      _round++;
+      _roundTime = 480;
+    }
+    notifyListeners();
   }
 
   void stopTimer() {
@@ -62,7 +63,7 @@ class TimerInfo with ChangeNotifier {
 
   void resetTimer() {
     _timer.cancel();
-    _remainingTime = 2;
+    _roundTime = 480;
     _round = 0;
     _isRunning = false;
     _isFinished = false;
